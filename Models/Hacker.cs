@@ -6,7 +6,8 @@ namespace HeistPT2
   {
     public string Name { get; set; }
     public int SkillLevel { get; set; }
-    public int intPercentageCut { get; set; }
+    public string Speciality { get; set; }
+    public int IntPercentageCut { get; set; }
     public void PerformSkill(Bank bank)
     {
       bank.AlarmScore -= SkillLevel;

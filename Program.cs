@@ -7,34 +7,40 @@ namespace HeistPT2
     {
         static void Main(string[] args)
         {
-            var bank = new Bank();
-
             var rolodex = new List<IRobbers>();
 
             var Onterio = new Hackers()
             {
                 Name = "Onterio",
                 SkillLevel = 50,
-                intPercentageCut = 50
+                IntPercentageCut = 50
             };
 
             var Luis = new LockSpecialist()
             {
                 Name = "Luis",
                 SkillLevel = 20,
-                intPercentageCut = 20
+                IntPercentageCut = 20
             };
 
-            var Adrian = new Muscle()
+            var Akemo = new Muscle()
             {
-                Name = "Adrian",
+                Name = "Akemo",
                 SkillLevel = 45,
-                intPercentageCut = 30
+                IntPercentageCut = 30
+            };
+
+            var Danyeal = new Muscle()
+            {
+                Name = "Danyeal",
+                SkillLevel = 50,
+                IntPercentageCut = 45
             };
 
             rolodex.Add(Onterio);
             rolodex.Add(Luis);
-            rolodex.Add(Adrian);
+            rolodex.Add(Akemo);
+            rolodex.Add(Danyeal);
 
             while (true)
             {
@@ -42,6 +48,7 @@ namespace HeistPT2
                 Console.WriteLine($"You currently have {rolodex.Count} members in your crew!");
                 Console.Write("Enter crew member name: ");
                 var crewMemberName = Console.ReadLine();
+
                 if (crewMemberName == "")
                 {
                     Console.WriteLine($"You now have {rolodex.Count} members in your crew!");
@@ -49,7 +56,7 @@ namespace HeistPT2
                     {
                         Console.WriteLine($"{name.Name}");
                     }
-                    Console.WriteLine("Closing app!...👋👋👋");
+
                     break;
                 }
                 else
@@ -57,6 +64,8 @@ namespace HeistPT2
                     Console.Write($"Should {crewMemberName} be a Hacker (Disables alarms), Muscle (Disarms guards), or Lock Specialist (Cracks vaults)? ");
 
                     string crewMemberSpeciality;
+                    int skillLevel = 0;
+                    int intPercentageCut = 0;
 
                     while (true)
                     {
@@ -64,55 +73,68 @@ namespace HeistPT2
                         crewMemberSpeciality = Console.ReadLine().ToLower();
                         if (crewMemberSpeciality == "hacker")
                         {
+                            Console.Write($"Enter {crewMemberName}'s skill level: ");
+                            skillLevel = int.Parse(Console.ReadLine());
+
+                            Console.Write($"Enter {crewMemberName}'s cut: ");
+                            intPercentageCut = int.Parse(Console.ReadLine());
+
                             var newHacker = new Hackers()
                             {
-                            Name = crewMemberName,
+                                Name = crewMemberName,
+                                Speciality = crewMemberSpeciality,
+                                SkillLevel = skillLevel,
+                                IntPercentageCut = intPercentageCut
                             };
 
-                            Console.Write($"Enter {crewMemberName} skill level: ");
-                            newHacker.SkillLevel = int.Parse(Console.ReadLine());
-
-                            Console.Write($"Enter {crewMemberName} cut: ");
-                            newHacker.intPercentageCut = int.Parse(Console.ReadLine());
                             rolodex.Add(newHacker);
 
                             Console.Clear();
                             break;
-
                         }
 
                         else if (crewMemberSpeciality == "muscle")
                         {
+                            Console.Write($"Enter {crewMemberName}'s skill level: ");
+                            skillLevel = int.Parse(Console.ReadLine());
+
+                            Console.Write($"Enter {crewMemberName}'s cut: ");
+                            intPercentageCut = int.Parse(Console.ReadLine());
+
                             var newMuscle = new Muscle()
                             {
-                            Name = crewMemberName,
+                                Name = crewMemberName,
+                                Speciality = crewMemberSpeciality,
+                                SkillLevel = skillLevel,
+                                IntPercentageCut = intPercentageCut
                             };
 
-                            Console.Write($"Enter {crewMemberName} skill level: ");
-                            newMuscle.SkillLevel = int.Parse(Console.ReadLine());
-
-                            Console.Write("Enter members cut: ");
-                            newMuscle.intPercentageCut = int.Parse(Console.ReadLine());
                             rolodex.Add(newMuscle);
-                            break;
 
+                            Console.Clear();
+                            break;
                         }
 
                         else if (crewMemberSpeciality == "lock specialist")
                         {
+                            Console.Write($"Enter {crewMemberName}'s skill level: ");
+                            skillLevel = int.Parse(Console.ReadLine());
+
+                            Console.Write($"Enter {crewMemberName}'s cut: ");
+                            intPercentageCut = int.Parse(Console.ReadLine());
+
                             var lockSpecialist = new LockSpecialist()
                             {
-                            Name = crewMemberName,
+                                Name = crewMemberName,
+                                Speciality = crewMemberSpeciality,
+                                SkillLevel = skillLevel,
+                                IntPercentageCut = intPercentageCut
                             };
 
-                            Console.Write($"Enter {crewMemberName} skill level: ");
-                            lockSpecialist.SkillLevel = int.Parse(Console.ReadLine());
-
-                            Console.Write("Enter members cut: ");
-                            lockSpecialist.intPercentageCut = int.Parse(Console.ReadLine());
                             rolodex.Add(lockSpecialist);
-                            break;
 
+                            Console.Clear();
+                            break;
                         }
 
                         else
